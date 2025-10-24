@@ -861,6 +861,47 @@ document.addEventListener("DOMContentLoaded", () => {
     setTimeRangeFilter,
   };
 
+  // Dark mode functionality
+  const darkModeToggle = document.getElementById("dark-mode-toggle");
+  const themeIcon = darkModeToggle.querySelector(".theme-icon");
+  const themeText = darkModeToggle.querySelector("span:last-child");
+
+  // Check for saved dark mode preference
+  function checkDarkModePreference() {
+    const savedMode = localStorage.getItem("darkMode");
+    if (savedMode === "enabled") {
+      enableDarkMode();
+    }
+  }
+
+  // Enable dark mode
+  function enableDarkMode() {
+    document.body.classList.add("dark-mode");
+    localStorage.setItem("darkMode", "enabled");
+    themeIcon.textContent = "☀️";
+    themeText.textContent = "Light Mode";
+  }
+
+  // Disable dark mode
+  function disableDarkMode() {
+    document.body.classList.remove("dark-mode");
+    localStorage.setItem("darkMode", "disabled");
+    themeIcon.textContent = "🌙";
+    themeText.textContent = "Dark Mode";
+  }
+
+  // Toggle dark mode
+  darkModeToggle.addEventListener("click", () => {
+    if (document.body.classList.contains("dark-mode")) {
+      disableDarkMode();
+    } else {
+      enableDarkMode();
+    }
+  });
+
+  // Initialize dark mode preference
+  checkDarkModePreference();
+
   // Initialize app
   checkAuthentication();
   initializeFilters();
