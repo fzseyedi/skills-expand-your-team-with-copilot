@@ -678,7 +678,8 @@ document.addEventListener("DOMContentLoaded", () => {
       button.classList.add("active");
 
       // Update current difficulty filter and display filtered activities
-      currentDifficulty = button.dataset.difficulty;
+      // Use empty string for "all" difficulty filter for consistency
+      currentDifficulty = button.dataset.difficulty === 'all-unspecified' ? '' : button.dataset.difficulty;
       displayFilteredActivities();
     });
   });
