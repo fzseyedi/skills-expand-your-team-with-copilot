@@ -429,9 +429,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
       // Apply difficulty filter
       if (currentDifficulty !== "") {
-        // When a specific difficulty is selected, only show activities with that difficulty
-        if (details.difficulty !== currentDifficulty) {
-          return;
+        if (currentDifficulty === "all-unspecified") {
+          // "All" option shows only activities with no difficulty specified
+          if (details.difficulty) {
+            return;
+          }
+        } else {
+          // When a specific difficulty is selected, only show activities with that difficulty
+          if (details.difficulty !== currentDifficulty) {
+            return;
+          }
         }
       }
 
